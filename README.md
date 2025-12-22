@@ -100,10 +100,12 @@ flowchart LR
 
     A --> B
     B -->|POST + X-Webhook-Secret| C
+    C --> D
+    D --> E
+    D --> F
+    D --> G
 
-
-
-```md
+```
 ## 🔐 Production Hardening Checklist
 
 Before using this system in production, the following measures are recommended:
