@@ -25,4 +25,16 @@ Bot Python (Docker) → Webhook seguro → n8n → Canales (Sheets / Telegram / 
 - Google Sheets API
 - Telegram Bot API
 
-## 📂 Estructura
+## 📂 Estructura:
+app/
+config/
+Dockerfile
+main.py
+requirements.txt
+
+## ▶️ Ejecución
+El bot se ejecuta como servicio Docker y funciona en ciclos configurables.
+
+## 📌 Nota
+Este proyecto es un ejemplo funcional de automatización end-to-end orientada a captación de leads.
+
