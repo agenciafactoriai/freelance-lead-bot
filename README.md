@@ -55,3 +55,15 @@ Purpose:
 
 This file is safe for public repositories.  
 Secrets and credentials must be configured manually in n8n.
+
+## 🧩 Architecture Diagram
+
+```mermaid
+flowchart LR
+    A[Workana Platform] --> B[Python Bot<br/>(Playwright + Docker)]
+    B -->|POST + X-Webhook-Secret| C[Secure Webhook<br/>(n8n)]
+    C --> D[Validation & Routing<br/>(n8n)]
+    D --> E[Google Sheets]
+    D --> F[Telegram]
+    D --> G[Email]
+
