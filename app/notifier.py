@@ -5,6 +5,7 @@ import base64
 import time
 import logging
 from config import settings
+from app.utils import fix_encoding
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +17,12 @@ def send_lead_to_n8n(data: dict, screenshot_bytes: bytes = None):
     if not settings.N8N_WEBHOOK_URL:
         logger.warning("N8N_WEBHOOK_URL no configurada. No se enviará el lead.")
         return False
+
+    # Normaliza campos de texto para evitar caracteres rotos en n8n/Gmail
+    data = data.copy()
+    for key in ("title", "budget", "match", "skills", "message"):
+        if key in data:
+            data[key] = fix_encoding(data[key])
     
     headers = {"Content-Type": "application/json"}
     if settings.N8N_SECRET_TOKEN:
