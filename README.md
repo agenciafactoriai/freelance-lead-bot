@@ -100,6 +100,36 @@ flowchart LR
 
     A --> B
     B -->|POST + X-Webhook-Secret| C
+
+## 🔐 Production Hardening Checklist
+
+Before using this system in production, the following measures are recommended:
+
+### Webhook Security
+- Use a strong, rotated `X-Webhook-Secret`
+- Restrict webhook access by IP if possible
+- Enable rate limiting on the webhook endpoint
+
+### Secrets Management
+- Store all secrets in environment variables
+- Never commit `.env` files to the repository
+- Rotate credentials periodically
+
+### n8n Hardening
+- Disable public workflow access
+- Use credentials with minimum required permissions
+- Enable execution logs and error workflows
+- Protect the n8n instance behind authentication or VPN
+
+### Python Bot
+- Run the bot inside a restricted Docker container
+- Limit outbound network access if possible
+- Add retries and timeout handling for network calls
+
+### Monitoring
+- Enable logging and alerting for failed executions
+- Monitor webhook traffic and execution volume
+
     C --> D
     D --> E
     D --> F
