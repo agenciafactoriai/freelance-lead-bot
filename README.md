@@ -101,6 +101,13 @@ flowchart LR
     A --> B
     B -->|POST + X-Webhook-Secret| C
 
+---
+
+### 🔧 2️⃣ Checklist de seguridad (FUERA del Mermaid)
+
+Justo **debajo**, ya como Markdown normal:
+
+```md
 ## 🔐 Production Hardening Checklist
 
 Before using this system in production, the following measures are recommended:
@@ -129,9 +136,3 @@ Before using this system in production, the following measures are recommended:
 ### Monitoring
 - Enable logging and alerting for failed executions
 - Monitor webhook traffic and execution volume
-
-    C --> D
-    D --> E
-    D --> F
-    D --> G
-
