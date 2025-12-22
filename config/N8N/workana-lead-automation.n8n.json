@@ -1,0 +1,147 @@
+{
+  "name": "Workana - Optimized (sanitized)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "WEBHOOK_PATH_PLACEHOLDER",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-848, 96],
+      "id": "WEBHOOK_NODE_ID",
+      "name": "Webhook",
+      "webhookId": "WEBHOOK_ID_PLACEHOLDER"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.headers[\"x-webhook-secret\"] }}",
+              "rightValue": "WEBHOOK_SECRET_PLACEHOLDER",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-624, 96],
+      "id": "IF_NODE_ID",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [-304, 0],
+      "id": "SET_NODE_ID",
+      "name": "Data Transformation & Template"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "GOOGLE_SHEET_ID_PLACEHOLDER",
+        "sheetName": "Hoja 1",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.body.id }}",
+            "titulo": "={{ $json.body.title }}",
+            "Presupuesto": "={{ $json.body.budget }}",
+            "skills": "={{ $json.body.skills }}",
+            "link": "={{ $json.body.link }}",
+            "match": "={{ $json.body.match }}",
+            "plataforma": "={{ $json.body.platform }}",
+            "fecha": "={{ $json.body.date }}"
+          },
+          "matchingColumns": ["id"]
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [-80, 0],
+      "id": "GSHEETS_NODE_ID",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GOOGLE_CREDS_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "TELEGRAM_CHAT_ID_PLACEHOLDER",
+        "text": "={{ $json.link }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [144, 0],
+      "id": "TELEGRAM_NODE_ID",
+      "name": "Send Telegram message",
+      "credentials": {
+        "telegramApi": {
+          "id": "TELEGRAM_CREDS_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "EMAIL_PLACEHOLDER",
+        "subject": "={{ $json.body.title }}",
+        "message": "<div><strong>Nuevo Lead Detectado</strong></div>"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [-304, 192],
+      "id": "GMAIL_NODE_ID",
+      "name": "Send email",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GMAIL_CREDS_ID",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "If", "type": "main", "index": 0 }]]
+    },
+    "If": {
+      "main": [[
+        { "node": "Data Transformation & Template", "type": "main", "index": 0 },
+        { "node": "Send email", "type": "main", "index": 0 }
+      ]]
+    },
+    "Data Transformation & Template": {
+      "main": [[{ "node": "Append row in sheet", "type": "main", "index": 0 }]]
+    },
+    "Append row in sheet": {
+      "main": [[{ "node": "Send Telegram message", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "tags": []
+}
