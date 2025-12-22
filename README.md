@@ -20,6 +20,15 @@ This solution is designed for:
 - Consultants who rely on fast lead response
 - Teams that want visibility without manual effort
 
+## ✅ Key Benefits
+
+- **Zero manual monitoring**
+- **Immediate notifications**
+- **Centralized lead tracking**
+- **Secure and controlled automation**
+- **Scalable architecture**
+
+
 
 End-to-end automation system for detecting new opportunities on Workana and securely distributing them across multiple channels using n8n.
 
