@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Bases de datos
+*.sqlite3
+*.db
+*.db-journal
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+.env/
+
+# Archivos de configuración local (si los tienes)
+.env
+config.ini
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
