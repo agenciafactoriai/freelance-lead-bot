@@ -34,7 +34,7 @@ class WorkanaBot:
                 if self.first_run:
                     logger.info("📸 Tomando captura de diagnóstico inicial...")
                     screenshot = self.scraper.page.screenshot(type="jpeg", quality=60)
-                    notifier.send_diagnostic_to_n8n("Bot reiniciado - Diagnóstico OK", screenshot)
+                    logger.info("✅ Bot iniciado correctamente. Diagnóstico registrado en logs.")
                     self.first_run = False
                 
                 for page_num in range(1, settings.MAX_PAGES_PER_CYCLE + 1):
