@@ -101,11 +101,7 @@ flowchart LR
     A --> B
     B -->|POST + X-Webhook-Secret| C
 
----
 
-### 🔧 2️⃣ Checklist de seguridad (FUERA del Mermaid)
-
-Justo **debajo**, ya como Markdown normal:
 
 ```md
 ## 🔐 Production Hardening Checklist
