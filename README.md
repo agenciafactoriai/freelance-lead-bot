@@ -12,6 +12,15 @@ This system automates the entire process:
 
 The result: **faster response times, better lead visibility, and higher conversion potential**.
 
+## 🎯 Who is this for?
+
+This solution is designed for:
+- Freelancers managing multiple platforms
+- Agencies sourcing projects at scale
+- Consultants who rely on fast lead response
+- Teams that want visibility without manual effort
+
+
 End-to-end automation system for detecting new opportunities on Workana and securely distributing them across multiple channels using n8n.
 
 ## 🚀 What it does
