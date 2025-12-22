@@ -9,7 +9,6 @@ from config import settings
 from app import database
 from app import notifier
 from app.scraper import Scraper
-from app.utils import fix_encoding
 
 logger = logging.getLogger(__name__)
 
@@ -80,9 +79,9 @@ class WorkanaBot:
                 logger.info(f"✨ MATCH: {project['raw_title'][:30]}... ({match})")
                 screenshot = project['card_element'].screenshot(type="jpeg", quality=50)
                 payload = {
-                    "type": "LEAD", "id": project['pid'], "title": fix_encoding(project['raw_title']),
-                    "link": project['link'], "match": fix_encoding(match), 
-                    "budget": fix_encoding(project['budget']), "skills": fix_encoding(project['skills']),
+                    "type": "LEAD", "id": project['pid'], "title": project['raw_title'],
+                    "link": project['link'], "match": match, 
+                    "budget": project['budget'], "skills": project['skills'],
                     "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
                 notifier.send_lead_to_n8n(payload, screenshot)

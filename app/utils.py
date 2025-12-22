@@ -15,12 +15,7 @@ def get_stealth_runner():
         return dummy_stealth
 
 def fix_encoding(text: str) -> str:
-    """Corrige problemas de doble codificación (latin1 -> utf-8)."""
-    if not text or not isinstance(text, str):
+    """Normaliza texto de forma segura sin recodificar."""
+    if not isinstance(text, str):
         return text
-    for enc in ("latin1", "cp1252"):
-        try:
-            return text.encode(enc).decode("utf-8")
-        except (UnicodeEncodeError, UnicodeDecodeError):
-            continue
-    return text
+    return text.strip()
