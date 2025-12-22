@@ -59,7 +59,16 @@ class WorkanaBot:
     def _process_cards(self, cards):
         """Toma una lista de elementos de tarjeta, los procesa y notifica si son nuevos."""
         projects_data = [self.scraper.parse_card(card) for card in cards]
-        projects_data = [p for p in projects_data if p]
+
+        # Filtra duplicados dentro de la misma página antes de tocar la DB
+        seen_pids = set()
+        unique_projects_data = []
+        for p in projects_data:
+            if p and p["pid"] not in seen_pids:
+                unique_projects_data.append(p)
+                seen_pids.add(p["pid"])
+
+        projects_data = unique_projects_data
 
         if not projects_data:
             logger.info("   No se encontraron proyectos válidos en la página.")
@@ -77,7 +86,10 @@ class WorkanaBot:
 
             if match:
                 logger.info(f"✨ MATCH: {project['raw_title'][:30]}... ({match})")
-                screenshot = project['card_element'].screenshot(type="jpeg", quality=50)
+                try:
+                    screenshot = project['card_element'].screenshot(type="jpeg", quality=50)
+                except:
+                    screenshot = None
                 payload = {
                     "type": "LEAD", "id": project['pid'], "title": project['raw_title'],
                     "link": project['link'], "match": match, 
