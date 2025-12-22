@@ -1,5 +1,17 @@
 # Workana Bot – Automated Lead Detection & Notification
 
+## 💼 Business Overview
+
+Many professionals and agencies miss valuable opportunities on Workana due to manual monitoring, delayed responses, or lack of structured lead management.
+
+This system automates the entire process:
+- Detects new projects in real time
+- Filters only relevant opportunities
+- Centralizes leads in one place
+- Notifies instantly through preferred channels
+
+The result: **faster response times, better lead visibility, and higher conversion potential**.
+
 End-to-end automation system for detecting new opportunities on Workana and securely distributing them across multiple channels using n8n.
 
 ## 🚀 What it does
