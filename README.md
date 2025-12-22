@@ -60,10 +60,18 @@ Secrets and credentials must be configured manually in n8n.
 
 ```mermaid
 flowchart LR
-    A[Workana Platform] --> B[Python Bot<br/>(Playwright + Docker)]
-    B -->|POST + X-Webhook-Secret| C[Secure Webhook<br/>(n8n)]
-    C --> D[Validation & Routing<br/>(n8n)]
-    D --> E[Google Sheets]
-    D --> F[Telegram]
-    D --> G[Email]
+    A[Workana Platform]
+    B[Python Bot\nPlaywright + Docker]
+    C[Secure Webhook\nn8n]
+    D[Validation & Routing\nn8n]
+    E[Google Sheets]
+    F[Telegram]
+    G[Email]
+
+    A --> B
+    B -->|POST + X-Webhook-Secret| C
+    C --> D
+    D --> E
+    D --> F
+    D --> G
 
