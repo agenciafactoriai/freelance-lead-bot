@@ -1,23 +1,23 @@
 # Workana Bot – Automated Lead Detection & Notification
 
-Sistema automatizado para la detección de oportunidades en Workana y su distribución segura a distintos canales mediante n8n.
+End-to-end automation system for detecting new opportunities on Workana and securely distributing them across multiple channels using n8n.
 
-## 🚀 Qué hace
-- Monitoriza proyectos en Workana usando Playwright
-- Detecta nuevos leads relevantes por keywords
-- Persiste resultados en base de datos local
-- Envía leads de forma segura a n8n
-- Distribuye a Google Sheets, Telegram y Email
+## 🚀 What it does
+- Monitors Workana projects using Playwright
+- Detects relevant leads based on keywords
+- Stores results locally
+- Sends normalized leads securely to n8n
+- Distributes data to Google Sheets, Telegram and Email
 
-## 🧱 Arquitectura
-Bot Python (Docker) → Webhook seguro → n8n → Canales (Sheets / Telegram / Gmail)
+## 🧱 Architecture
+Python Bot (Docker) → Secure Webhook → n8n → Channels (Sheets / Telegram / Gmail)
 
-## 🔐 Seguridad
-- Webhook protegido con header `X-Webhook-Secret`
-- Variables sensibles gestionadas por entorno (no hardcoded)
-- Validación en n8n antes de ejecutar flujos
+## 🔐 Security
+- Webhook protected via `X-Webhook-Secret` header
+- Sensitive values managed through environment variables
+- Server-side validation in n8n before workflow execution
 
-## 🛠️ Stack
+## 🛠️ Tech Stack
 - Python
 - Playwright
 - Docker
@@ -25,16 +25,33 @@ Bot Python (Docker) → Webhook seguro → n8n → Canales (Sheets / Telegram / 
 - Google Sheets API
 - Telegram Bot API
 
-## 📂 Estructura:
+## 📂 Project Structure
+
 app/
 config/
 Dockerfile
 main.py
 requirements.txt
 
-## ▶️ Ejecución
-El bot se ejecuta como servicio Docker y funciona en ciclos configurables.
 
-## 📌 Nota
-Este proyecto es un ejemplo funcional de automatización end-to-end orientada a captación de leads.
+## ▶️ Execution
+The bot runs as a Docker service and executes in configurable cycles.
 
+## 📌 Note
+This project is a functional example of an end-to-end automation system focused on lead acquisition.
+
+## n8n Workflow Template
+
+This repository includes a **sanitized n8n workflow template**:
+
+**Path:** `config/N8N/workana-lead-automation.n8n.json`
+
+Purpose:
+- Receives leads via secure webhook
+- Validates request headers
+- Stores data in Google Sheets
+- Sends Telegram notifications
+- Sends email alerts
+
+This file is safe for public repositories.  
+Secrets and credentials must be configured manually in n8n.
