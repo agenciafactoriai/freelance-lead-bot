@@ -134,3 +134,30 @@ Before using this system in production, the following measures are recommended:
 ### Monitoring
 - Enable logging and alerting for failed executions
 - Monitor webhook traffic and execution volume
+
+## 🧠 Use Case – FactoriAI
+
+This project represents a real-world use case developed under the FactoriAI philosophy:
+using automation and intelligent orchestration to eliminate manual, repetitive work.
+
+### Business Problem
+Manually monitoring platforms like Workana is time-consuming and inefficient.
+Opportunities are often missed due to delayed responses or lack of visibility.
+
+### Solution
+An automated, secure pipeline that:
+- Continuously detects new opportunities
+- Filters only relevant leads
+- Distributes information instantly
+- Keeps full control over data and execution
+
+### Value Delivered
+- Reduced reaction time
+- Improved lead conversion
+- Full operational visibility
+- Scalable and maintainable architecture
+---
+
+Built with ⚙️ by **FactoriAI**  
+Mindful intelligence for modern operations.
+
