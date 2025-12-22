@@ -18,7 +18,9 @@ def fix_encoding(text: str) -> str:
     """Corrige problemas de doble codificación (latin1 -> utf-8)."""
     if not text or not isinstance(text, str):
         return text
-    try:
-        return text.encode("latin1").decode("utf-8")
-    except (UnicodeEncodeError, UnicodeDecodeError):
-        return text
+    for enc in ("latin1", "cp1252"):
+        try:
+            return text.encode(enc).decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+    return text
