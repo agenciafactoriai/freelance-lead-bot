@@ -23,36 +23,46 @@ class WorkanaBot:
         self.first_run = True
 
     def run(self):
-        """Inicia el navegador y comienza el bucle infinito de monitoreo."""
-        self.scraper.start_browser()
+        """Inicia el bucle infinito de monitoreo con ciclos de navegador frescos."""
+        logger.info("🚀 Bot iniciado. Comenzando bucle principal...")
+
         while True:
             try:
-                logger.info("🌐 Iniciando nuevo ciclo de escaneo...")
+                logger.info("🌐 Iniciando navegador para nuevo ciclo...")
+                self.scraper.start_browser()
+
                 self.scraper.navigate_to(settings.WORKANA_URL)
-                
+
                 if self.first_run:
                     logger.info("📸 Tomando captura de diagnóstico inicial...")
-                    screenshot = self.scraper.page.screenshot(type="jpeg", quality=60)
-                    logger.info("✅ Bot iniciado correctamente. Diagnóstico registrado en logs.")
+                    try:
+                        self.scraper.page.screenshot(type="jpeg", quality=60)
+                    except Exception:
+                        pass
                     self.first_run = False
-                
+
                 for page_num in range(1, settings.MAX_PAGES_PER_CYCLE + 1):
                     logger.info(f"📄 Procesando página {page_num}/{settings.MAX_PAGES_PER_CYCLE}...")
-                    
+
                     project_cards = self.scraper.get_project_cards()
                     self._process_cards(project_cards)
-                    
+
                     if page_num < settings.MAX_PAGES_PER_CYCLE:
                         if not self.scraper.go_to_next_page():
                             logger.info("   No hay más páginas en este ciclo.")
                             break
                     else:
                         logger.info("   Fin del ciclo de paginación.")
-                
-            except Exception as e:
-                logger.exception("❌ Error crítico en el ciclo principal.")
-                # Aquí se podría añadir lógica para reiniciar el scraper si es necesario
-            
+
+            except Exception:
+                logger.exception("❌ Error crítico durante el ciclo.")
+            finally:
+                logger.info("🔒 Cerrando navegador para liberar recursos...")
+                try:
+                    self.scraper.close_browser()
+                except Exception as e:
+                    logger.error(f"⚠️ Error al cerrar navegador: {e}")
+
             logger.info(f"⏳ Ciclo completado. Esperando {settings.MONITOR_INTERVAL} segundos...")
             time.sleep(settings.MONITOR_INTERVAL)
 
