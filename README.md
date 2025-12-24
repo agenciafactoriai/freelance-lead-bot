@@ -1,5 +1,4 @@
-# 
-freelance-lead-bot– Automated Lead Detection & Notification
+# Freelance-lead-bot– Automated Lead Detection & Notification
 
 ## 💼 Business Overview
 
