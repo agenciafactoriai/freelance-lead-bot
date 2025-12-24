@@ -2,7 +2,7 @@
 
 ## 💼 Business Overview
 
-Many professionals and agencies miss valuable opportunities on Workana due to manual monitoring, delayed responses, or lack of structured lead management.
+Many professionals and agencies miss valuable opportunities on freelance marketplaces due to manual monitoring, delayed responses, or lack of structured lead management.
 
 This system automates the entire process:
 - Detects new projects in real time
