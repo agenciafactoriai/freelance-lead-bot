@@ -33,7 +33,7 @@ This solution is designed for:
 End-to-end automation system for detecting new opportunities on Workana and securely distributing them across multiple channels using n8n.
 
 ## 🚀 What it does
-- Monitors Workana projects using Playwright
+- Monitors freelance projects using Playwright
 - Detects relevant leads based on keywords
 - Stores results locally
 - Sends normalized leads securely to n8n
@@ -74,7 +74,7 @@ This project is a functional example of an end-to-end automation system focused 
 
 This repository includes a **sanitized n8n workflow template**:
 
-**Path:** `config/N8N/workana-lead-automation.n8n.json`
+**Path:** `config/N8N/Freelance-lead-botautomation.n8n.json`
 
 Purpose:
 - Receives leads via secure webhook
@@ -141,7 +141,8 @@ This project represents a real-world use case developed under the FactoriAI phil
 using automation and intelligent orchestration to eliminate manual, repetitive work.
 
 ### Business Problem
-Manually monitoring platforms like Workana is time-consuming and inefficient.
+Manually monitoring freelance platforms is time-consuming
+(e.g. Workana)
 Opportunities are often missed due to delayed responses or lack of visibility.
 
 ### Solution
