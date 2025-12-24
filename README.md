@@ -1,4 +1,5 @@
-# Workana Bot – Automated Lead Detection & Notification
+# 
+freelance-lead-bot– Automated Lead Detection & Notification
 
 ## 💼 Business Overview
 
